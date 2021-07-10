@@ -1,0 +1,132 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+        http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.example.cv</groupId>
+    <artifactId>javafx-javacv</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>javafx-javacv</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.release>11</maven.compiler.release>
+        <javafx.version>15</javafx.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <release>${maven.compiler.release}</release>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.5</version>
+                <configuration>
+                    <release>${maven.compiler.release}</release>
+                    <jlinkImageName>jj-example</jlinkImageName>
+                    <launcher>launcher</launcher>
+                    <mainClass>com.example.cv/com.example.cv.Main</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.openjfx</groupId>-->
+<!--            <artifactId>javafx-swing</artifactId>-->
+<!--            <version>${javafx.version}</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.openjfx</groupId>-->
+<!--            <artifactId>javafx-media</artifactId>-->
+<!--            <version>${javafx.version}</version>-->
+<!--        </dependency>-->
+
+<!--        &lt;!&ndash; https://github.com/bytedeco/javacv &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.bytedeco</groupId>-->
+<!--            <artifactId>javacv-platform</artifactId>-->
+<!--            <version>1.5.5</version>-->
+<!--        </dependency>-->
+
+<!--        &lt;!&ndash; Additional dependencies required to use CUDA and cuDNN &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.bytedeco</groupId>-->
+<!--            <artifactId>opencv-platform-gpu</artifactId>-->
+<!--            <version>4.5.1-1.5.5</version>-->
+<!--        </dependency>-->
+
+<!--        &lt;!&ndash; Optional GPL builds with (almost) everything enabled &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.bytedeco</groupId>-->
+<!--            <artifactId>ffmpeg-platform-gpl</artifactId>-->
+<!--            <version>4.3.2-1.5.5</version>-->
+<!--        </dependency>-->
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>macosx-x86_64</id>
+            <activation>
+                <os>
+                    <family>mac</family>
+                    <arch>x86_64</arch>
+                </os>
+            </activation>
+            <properties>
+                <classifier>macosx-x86_64</classifier>
+            </properties>
+        </profile>
+        <profile>
+            <id>linux-x86_64</id>
+            <activation>
+                <os>
+                    <family>unix</family>
+                    <arch>amd64</arch>
+                </os>
+            </activation>
+            <properties>
+                <classifier>linux-x86_64</classifier>
+            </properties>
+        </profile>
+        <profile>
+            <id>windows-x86_64</id>
+            <activation>
+                <os>
+                    <family>windows</family>
+                    <arch>amd64</arch>
+                </os>
+            </activation>
+            <properties>
+                <classifier>windows-x86_64</classifier>
+            </properties>
+        </profile>
+        <profile>
+            <id>windows-x86</id>
+            <activation>
+                <os>
+                    <family>windows</family>
+                    <arch>x86</arch>
+                </os>
+            </activation>
+            <properties>
+                <classifier>windows-x86</classifier>
+            </properties>
+        </profile>
+    </profiles>
+</project>
+
